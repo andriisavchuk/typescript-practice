@@ -6,3 +6,7 @@ const userObj: UserProps = {
 };
 
 const user = new User(userObj);
+
+user.on('click', () => {
+  console.log('user clicked');
+});
