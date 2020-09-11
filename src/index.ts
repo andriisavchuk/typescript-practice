@@ -1,5 +1,8 @@
-import { User } from './models/User';
+import { User, UserProps } from './models/User';
 
-const user = new User({ name: 'new record', age: 0 });
+const userObj: UserProps = {
+  name: 'Ivan',
+  age: 35,
+};
 
-user.saveUser();
+const user = new User(userObj);
