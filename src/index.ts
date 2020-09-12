@@ -1,12 +1,14 @@
 import { User, UserProps } from './models/User';
 
 const userObj: UserProps = {
-  name: 'Ivan',
-  age: 35,
+  name: 'Andy',
+  age: 19,
 };
 
 const user = new User(userObj);
 
-user.on('click', () => {
-  console.log('user clicked');
+user.on('save', () => {
+  console.log(user);
 });
+
+user.save();
