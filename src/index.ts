@@ -1,14 +1,10 @@
-import { User, UserProps } from './models/User';
+import { User } from './models/User';
 
-const userObj: UserProps = {
-  name: 'Andy',
-  age: 19,
-};
+const user = User.createUser({ id: 1 });
 
-const user = new User(userObj);
-
-user.on('save', () => {
+user.on('change', () => {
   console.log(user);
 });
 
-user.save();
+// user.save();
+user.fetch();
