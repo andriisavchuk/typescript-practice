@@ -1,7 +1,7 @@
+import { AxiosResponse } from 'axios';
 import { ModelAttributes } from '../interfaces/ModelAttributes';
 import { Events } from '../interfaces/Events';
 import { Sync } from '../interfaces/Sync';
-import { AxiosResponse } from 'axios';
 import { HasId } from '../interfaces/HasId';
 
 export class Model<T extends HasId> {
