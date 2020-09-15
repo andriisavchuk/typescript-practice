@@ -14,11 +14,22 @@ export class UserForm {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:.set-age': this.onSetAgeClick,
+      'click:.set-name': this.onSetNameClick,
     };
   }
 
   onSetAgeClick = (): void => {
     this.model.setRandomAge();
+  };
+
+  onSetNameClick = (): void => {
+    const input = this.parent.querySelector('input');
+
+    if (input) {
+      const name = input.value;
+    }
+
+    this.model.set({ name });
   };
 
   generateTemplate(): string {
@@ -28,8 +39,8 @@ export class UserForm {
         <div>User name: ${this.model.getProp('name')}</div>
         <div>User age: ${this.model.getProp('age')}</div>
         <input type="text">
-        <button>Click</button>
-        <button class="set-age">Set random age</button>
+        <button class="set-name">Change Name</button>
+        <button class="set-age">Set Random Age</button>
       </div>
     `;
   }
@@ -40,8 +51,8 @@ export class UserForm {
     for (let eventKey in eventsMap) {
       const [eventName, selector] = eventKey.split(':');
 
-      fragment.querySelectorAll('.set-age').forEach((elemetn) => {
-        elemetn.addEventListener(eventName, eventsMap[eventKey]);
+      fragment.querySelectorAll('.set-age').forEach((element) => {
+        element.addEventListener(eventName, eventsMap[eventKey]);
       });
     }
   }
