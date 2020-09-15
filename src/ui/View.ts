@@ -1,11 +1,17 @@
 import { Model } from '../models/Model';
 
 export abstract class View<T extends Model<K>, K> {
+  layout: { [key: string]: Element } = {};
+
   constructor(public parent: Element, public model: T) {
     this.bindModel();
   }
 
   abstract generateTemplate(): string;
+
+  layoutMap(): { [key: string]: string } {
+    return {};
+  }
 
   eventsMap(): { [key: string]: () => void } {
     return {};
@@ -29,6 +35,21 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
+  mapLayout(fragment: DocumentFragment): void {
+    const layoutMap = this.layoutMap();
+
+    for (let key in layoutMap) {
+      const selector = layoutMap[key];
+      const element = fragment.querySelector(selector);
+
+      if (element) {
+        this.layout[key] = element;
+      }
+    }
+  }
+
+  onRender(): void {}
+
   render(): void {
     this.parent.innerHTML = '';
 
@@ -36,6 +57,9 @@ export abstract class View<T extends Model<K>, K> {
     templateElement.innerHTML = this.generateTemplate();
 
     this.bindEvents(templateElement.content);
+    this.mapLayout(templateElement.content);
+
+    this.onRender();
 
     this.parent.append(templateElement.content);
   }

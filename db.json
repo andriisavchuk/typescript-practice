@@ -24,6 +24,11 @@
       "name": "Andrii",
       "age": 38,
       "id": 5
+    },
+    {
+      "name": "Sergii",
+      "age": 70,
+      "id": 6
     }
   ]
 }
