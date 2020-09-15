@@ -4,7 +4,7 @@ import { User } from '../models/User';
 import { UserShow } from './UserShow';
 import { UserForm } from './UserForm';
 
-export class UserEdit extends View<User, UserProps> {
+export class UserView extends View<User, UserProps> {
   layoutMap(): { [p: string]: string } {
     return {
       userShow: '.user-show',
